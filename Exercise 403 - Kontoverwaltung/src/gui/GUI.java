@@ -128,19 +128,21 @@ public class GUI extends javax.swing.JFrame {
 
     private void miAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddUserActionPerformed
         // TODO add your handling code here:
-        dlm.addElement(new AccountUser(JOptionPane.showInputDialog("Name:"), account));
+        dlm.addElement(new AccountUser(JOptionPane.showInputDialog("Name:"), account,this));
     }//GEN-LAST:event_miAddUserActionPerformed
 
     private void miTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miTestActionPerformed
         // TODO add your handling code here:
-        for(int i=0; i<dlm.getSize();i++){
-            Thread t = new Thread((Runnable)dlm.get(i));
+        Thread t;
+        for (int selectedIndice : userList.getSelectedIndices()) {
+            t = new Thread((Runnable)dlm.get(selectedIndice));
             t.start();
         }
+        
     }//GEN-LAST:event_miTestActionPerformed
 
     public void putLine(String line){
-        logOutput.append(line+"\n");
+        logOutput.append(line);
     }
     
     public void showBalance(){
